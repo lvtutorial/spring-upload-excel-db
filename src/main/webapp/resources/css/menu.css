@@ -1,0 +1,13 @@
+/*******custom bootstrap***********/
+/*.navbar { 
+    margin-bottom: 5px !important;
+    min-height: 50 !important;
+}
+*/
+
+.dropdown-menu > .active > a, .dropdown-menu > .active > a:focus, .dropdown-menu > .active > a:hover {
+	background-color: #e2e2e2 !important;
+    background-image: linear-gradient(to bottom, #e2e2e2 0px, #e2e2e2 100%) !important;
+    background-repeat: repeat-x !important;
+    color: #333 !important;    
+}

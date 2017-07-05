@@ -1,0 +1,8 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd">
+ 
+ 	<bean id="viewExcel2003" class="com.hlv.view.Excel2003" />
+	<bean id="viewExcel2007" class="com.hlv.view.Excel2007" />
+</beans>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
+	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+	http://www.springframework.org/schema/task  http://www.springframework.org/schema/task/spring-task.xsd	
+	http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+	http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	
+	<!-- <mvc:annotation-driven validator="validator"/>
+	<task:annotation-driven/> -->
+	<!-- for @Autowired must be set in root, not servlet, contextConfigLocation in web.xml-->
+	<context:component-scan base-package="com.hlv.service, com.hlv.dao, com.hlv.bean"/>	 
+	<!-- <security:global-method-security pre-post-annotations="enabled" /> -->
+	    
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+    
+	<bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    
+    <bean id="persistenceExceptionTranslationPostProcessor"  
+  		class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />  
+   
+ 	<bean id="dataSource"  
+	  class="org.springframework.jdbc.datasource.DriverManagerDataSource">  
+	  <property name="driverClassName" value="oracle.jdbc.OracleDriver" />  
+	  <property name="url" value="jdbc:oracle:thin:@12.84.1.193:1521:ORL" />  
+	  <property name="username" value="spring" />  
+	  <property name="password" value="spring123456" />  
+	 </bean>
+  
+<!-- 
+	 <jdbc:initialize-database data-source="dataSource" enabled="true">
+        <jdbc:script location="classpath:db-schema.sql" />
+        <jdbc:script location="classpath:db-test-data.sql" />
+     </jdbc:initialize-database>
+	     
+
+ 	<jee:jndi-lookup id="dataSource"
+		jndi-name="java:jboss/datasources/itaDatasource" resource-ref="true"/>  
+ -->
+ <!-- 		
+	<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+	    <property name="jndiName">
+	        <value>java:jboss/datasources/itaDatasource</value>
+	    </property>
+	</bean>
+ -->			 
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="packagesToScan" value="com.hlv.entity" />
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</prop>
+                <prop key="hibernate.show_sql">false</prop>
+                <prop key="hibernate.hbm2ddl.auto">none</prop>
+                <!-- <prop key="hibernate.hbm2ddl.auto">create-drop/create/none/update</prop> create table-->
+                <!-- <prop key="hibernate.default_schema">SPRING</prop> -->
+                <prop key="hibernate.format_sql">true</prop>
+            </props>
+        </property>
+    </bean>	    
+       
+</beans>

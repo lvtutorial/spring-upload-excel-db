@@ -1,0 +1,23 @@
+1. new project
+- file\Spring Project\Simple Spring Web Maven.
+2. config jboss 7.1:
+- add code below after <level name="INFO"/> in standalone.xml to excludes some service (fixed error jboss)
+<filter>
+    <not>
+        <match pattern="JBAS015875|JBAS011006"/>
+    </not>
+</filter>
+3. config database
+- add info datasource in standalone.xml
+- open root-context.xml file and modify <prop key="hibernate.hbm2ddl.auto">none</prop> from none to create (purpose to create table direct from hibernate into database)
+- when created tables then add user with role A01:admin; A02:user
+	+ ldap=0 and admin/123 (pass md5 in Utils.java) 
+	+ ldap=1 and add account on ldap server
+4. need to find code to config primary key name in entity of hibernate
+5. email -> EmailService
+6. sitemesh using layout template
+7. job config in web.xml
+8. using boostrap css framework
+--------------------------------
+A. Deploy Database
+- run script schema.sql or run jboss with <prop key="hibernate.hbm2ddl.auto">create</prop> --> auto create database

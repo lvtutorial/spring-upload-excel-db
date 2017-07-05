@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE datasources
+    PUBLIC "-//JBoss//DTD JBOSS JCA Config 1.5//EN"
+    "http://www.jboss.org/j2ee/dtd/jboss-ds_1_5.dtd">
+<datasources>
+   
+   <local-tx-datasource>
+      <jndi-name>itsDatasource</jndi-name>
+      <use-java-context>true</use-java-context>
+      <connection-url>jdbc:oracle:thin:@12.84.1.193:1521:ORL</connection-url>
+      <driver-class>oracle.jdbc.OracleDriver</driver-class>
+      <user-name>spring</user-name>
+      <password>spring123456</password>
+       <min-pool-size>5</min-pool-size>
+      <max-pool-size>10</max-pool-size>
+	  <check-valid-connection-sql>select 1 from dual</check-valid-connection-sql>
+     
+   </local-tx-datasource>
+    
+</datasources>
